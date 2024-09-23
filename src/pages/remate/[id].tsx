@@ -1,6 +1,5 @@
 import React, { FC, useContext, useEffect } from 'react';
 import {  Typography, Box, Paper } from '@mui/material';
-import { collection } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { DatosContext } from '@/context/datosContext';
 import Grid from '@mui/material/Grid2'
@@ -25,7 +24,6 @@ const NotariaDocument :FC= () => {
     
   }, [id])
 
-  console.log(dataLibro)
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -44,7 +42,7 @@ const NotariaDocument :FC= () => {
           {/* LIBRO NRO, CONSTA DE, FOLIOS */}
           <Grid size={{xs:4}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>LIBRO NRO</strong></Typography>
-            <Typography variant="body2">16294</Typography>
+            <Typography variant="body2">{dataLibro.libro}</Typography>
           </Grid>
           <Grid size={{xs:4}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>CONSTA DE</strong></Typography>
@@ -52,7 +50,7 @@ const NotariaDocument :FC= () => {
           </Grid>
           <Grid size={{xs:4}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>FOLIOS</strong></Typography>
-            <Typography variant="body2">962</Typography>
+            <Typography variant="body2">{dataLibro.folios}</Typography>
           </Grid>
 
           {/* COMPRENDE DE LA ESCRITURA */}
@@ -60,26 +58,26 @@ const NotariaDocument :FC= () => {
             <Typography variant="body1"><strong>COMPRENDE DE LA ESCRITURA NRO</strong></Typography>
           </Grid>
           <Grid size={{xs:4}} sx={{ border: '1px solid black', padding: 1 }}>
-            <Typography variant="body2">962</Typography>
+            <Typography variant="body2">{dataLibro.escInicial}</Typography>
           </Grid>
 
           {/* DE FECHA, ACTO, OTORGADO POR, A FAVOR DE */}
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>DE FECHA</strong></Typography>
-            <Typography variant="body2">FEBRERO 13 - 2019</Typography>
+            <Typography variant="body2">{dataLibro?.primer_acto?.fecha}</Typography>
           </Grid>
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>ACTO</strong></Typography>
-            <Typography variant="body2">CANCELACIÓN HIPOTECA</Typography>
+            <Typography variant="body2">{dataLibro?.primer_acto?.acto}</Typography>
           </Grid>
 
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>OTORGADO POR</strong></Typography>
-            <Typography variant="body2">GABRIEL DE JESUS ARANGO PUERTA</Typography>
+            <Typography variant="body2">{dataLibro?.primer_acto?.otorgado_por}</Typography>
           </Grid>
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>A FAVOR DE</strong></Typography>
-            <Typography variant="body2">CAROLINA MARTINEZ BANDERA</Typography>
+            <Typography variant="body2">{dataLibro?.primer_acto?.a_favor_de}</Typography>
           </Grid>
 
           <Grid size={{xs:12}} sx={{ border: '1px solid black', padding: 3 }}>
@@ -88,30 +86,30 @@ const NotariaDocument :FC= () => {
           {/* Segunda escritura */}
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>A LA ESCRITURA NRO</strong></Typography>
-            <Typography variant="body2">966</Typography>
+            <Typography variant="body2">{dataLibro?.escFinal}</Typography>
           </Grid>
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>DE FECHA</strong></Typography>
-            <Typography variant="body2">ABRIL 13 - 2019</Typography>
+            <Typography variant="body2">{dataLibro?.segundo_acto?.fecha}</Typography>
           </Grid>
 
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>ACTO</strong></Typography>
-            <Typography variant="body2">LIBERACIÓN PARCIAL DE HIPOTECA</Typography>
+            <Typography variant="body2">{dataLibro?.segundo_acto?.acto}</Typography>
           </Grid>
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>OTORGADO POR</strong></Typography>
-            <Typography variant="body2">BANCOLOMBIA SA</Typography>
+            <Typography variant="body2">{dataLibro?.segundo_acto?.otorgado_por}</Typography>
           </Grid>
           <Grid size={{xs:6}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1"><strong>A FAVOR DE</strong></Typography>
-            <Typography variant="body2">JOAQUIN GUILLERMO SANCHEZ</Typography>
+            <Typography variant="body2">{dataLibro?.segundo_acto?.a_favor_de}</Typography>
           </Grid>
 
           {/* TOMO */}
           <Grid size={{xs:12}} sx={{ border: '1px solid black', padding: 1 }}>
             <Typography variant="body1" align="center"><strong>TOMO</strong></Typography>
-            <Typography variant="body2" align="center">29</Typography>
+            <Typography variant="body2" align="center">{dataLibro?.tomo}</Typography>
           </Grid>
         </Grid>
       </Paper>

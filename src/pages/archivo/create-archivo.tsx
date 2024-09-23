@@ -71,7 +71,7 @@ const createArchivo:FC = () => {
                   acto: acto2,
                   otorgado_por: otorgadoPor2,
                   a_favor_de:aFavorDe2,
-                  fecha: fecha2
+                  fecha: fecha2,
                 },
                 prestado: {
                     libro_prestado:false,
