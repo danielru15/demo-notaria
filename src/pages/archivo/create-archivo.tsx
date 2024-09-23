@@ -46,7 +46,7 @@ const createArchivo:FC = () => {
         e.preventDefault()
         try {
             await setDoc(doc(archivo,libro), {
-                id:libro,
+                id:`libro${libro}`,
                 año:año,
                 mes: mes,
                 tomo: tomo,

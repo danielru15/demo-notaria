@@ -53,7 +53,7 @@ const SignIn:FC = () => {
       await login(email,password)
       push("/")
     } catch (error:any) {
-      setError(getErrorMessage(error.code));
+      
     }
     
   };

@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import { Grid, Typography, Box, Paper } from '@mui/material';
+import { collection } from 'firebase/firestore';
+import { useRouter } from 'next/router';
+import { DatosContext } from '@/context/datosContext';
 
-const NotariaDocument = () => {
+const NotariaDocument :FC= () => {
+  const {dataLibro, setDataLibro,getLibroid} = useContext(DatosContext)
+  const router = useRouter();
+  const { id } = router.query;
+ 
+  useEffect(() => {
+    getLibroid (id).then((data:any)=> {
+      if (data) {
+      setDataLibro(data)
+      } 
+      else {
+        console.log('No se encontraron datos para este ID');
+      }
+    }).catch((error:any) => {
+    console.error('Error al obtener los datos:', error);
+    })
+  
+    return () => {
+      
+    }
+  }, [id])
+
+  console.log(dataLibro)
+
   return (
     <Box sx={{ padding: 2 }}>
       <Paper elevation={3} sx={{ padding: 2 }}>
