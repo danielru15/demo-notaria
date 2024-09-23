@@ -1,3 +1,4 @@
+import { AuthProvider } from '@/context/authContext' 
 import { FC ,useContext, useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -59,6 +60,7 @@ const SignIn:FC = () => {
   };
 
   return (
+    <AuthProvider>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -120,6 +122,7 @@ const SignIn:FC = () => {
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
+    </AuthProvider>
   );
 }
 export default SignIn

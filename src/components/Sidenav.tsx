@@ -97,7 +97,7 @@ export default function MiniDrawer() {
                 </ListItemButton>
             </Tooltip>
         </ListItem>
-        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => push("/")}>
+        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => push("/archivo/")}>
             <Tooltip title="Archivo">
                 <ListItemButton
                     sx={{
@@ -119,7 +119,7 @@ export default function MiniDrawer() {
                 </ListItemButton>
             </Tooltip>
         </ListItem>
-        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => push("/archivo")}>
+        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => push("/archivo/")}>
             <Tooltip title="Informe Archivo">
                 <ListItemButton
                     sx={{
@@ -146,7 +146,7 @@ export default function MiniDrawer() {
         <Divider />
         <List>
        
-        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => push("/users")}>
+        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => push("/users/")}>
             <Tooltip title="usuarios">
                 <ListItemButton
                     sx={{
