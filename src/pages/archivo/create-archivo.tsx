@@ -1,4 +1,4 @@
-import { AuthProvider } from '@/context/authContext' 
+
 import Layout from '@/layout/Layout'
 import React, { FC,  useRef, useState } from 'react'
 import { Box, Button, Divider, FormControl, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material'
@@ -106,7 +106,7 @@ const createArchivo:FC = () => {
 
 
   return (
-    <AuthProvider>
+ 
     <Layout   title={'Crear registro'}>
         <Box component={"form"} sx={{ m: 1 }} onSubmit={RegistrarLibro} >
             <Grid container spacing={2}>
@@ -327,7 +327,7 @@ const createArchivo:FC = () => {
         </Box>
       
     </Layout>
-    </AuthProvider>
+
   )
 }
 

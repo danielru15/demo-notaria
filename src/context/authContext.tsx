@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }:PropsWithChildren) => {
 
     useEffect(() => {
     const unsuscribe =onAuthStateChanged(auth, userAuth => {
-        if(!userAuth){
+        if(!userAuth && router.pathname !== '/remate/[id]'){
             router.push('/login')
             setUser(null)
         }

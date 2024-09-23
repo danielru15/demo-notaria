@@ -1,4 +1,4 @@
-import { AuthProvider } from '@/context/authContext' 
+
 import Layout from '@/layout/Layout'
 import React from 'react'
 import { createUserWithEmailAndPassword} from 'firebase/auth'
@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid2'
 const createUser = () => {
     
   return (
-    <AuthProvider>
+
     <Layout title={'Registrar Usuario'}>
         <Box component={"form"} sx={{ m: 1 }} >
             <Grid container spacing={2}>
@@ -78,7 +78,7 @@ const createUser = () => {
         </Box>
       
     </Layout>
-    </AuthProvider>
+  
   )
 }
 
