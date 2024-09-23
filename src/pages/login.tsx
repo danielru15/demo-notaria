@@ -51,7 +51,7 @@ const SignIn:FC = () => {
     // Aquí puedes implementar la lógica de autenticación
     try {
       await login(email,password)
-      push("/")
+      push("/archivo/create-archivo")
     } catch (error:any) {
       
     }

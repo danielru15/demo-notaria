@@ -11,6 +11,11 @@ const createArchivo:FC = () => {
  
     const qrCodeRef = useRef<any>(null);
 
+     // Función para generar la URL completa
+    const generateUrl = (id: string) => {
+    const baseUrl = window.location.origin;  // Obtiene el dominio actual
+    return `${baseUrl}/remate/${id}`;
+  };
     //  Informacion Basica libro
     const [libro, setLibro] = useState('');
     const [escInicial, setEscInicial] = useState('');
@@ -35,7 +40,7 @@ const createArchivo:FC = () => {
     // Funcion descargar QR
     const handleDownload = () => {
         if (qrCodeRef.current) {
-            qrCodeRef.current.download("png", `${libro}`); // Descargar en formato PNG con nombre de archivo
+            qrCodeRef.current.download("png", `libro${libro}`); // Descargar en formato PNG con nombre de archivo
           }
       };
 
@@ -45,7 +50,7 @@ const createArchivo:FC = () => {
     const RegistrarLibro = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            await setDoc(doc(archivo,libro), {
+            await setDoc(doc(archivo,`libro${libro}`), {
                 id:`libro${libro}`,
                 año:año,
                 mes: mes,
@@ -299,7 +304,7 @@ const createArchivo:FC = () => {
                         <>
                            
                             <QRCode 
-                                value={`/remate/${libro}`} 
+                                value={generateUrl(libro)} 
                                 ref={qrCodeRef}  
                                 size={100}
                             />

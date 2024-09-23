@@ -10,7 +10,7 @@ const NotariaDocument :FC= () => {
   const { id } = router.query;
  
   useEffect(() => {
-    getLibroid (id).then((data:any)=> {
+    getLibroid (id as string).then((data:any)=> {
       if (data) {
       setDataLibro(data)
       } 
@@ -21,9 +21,7 @@ const NotariaDocument :FC= () => {
     console.error('Error al obtener los datos:', error);
     })
   
-    return () => {
-      
-    }
+    
   }, [id])
 
   console.log(dataLibro)

@@ -31,7 +31,7 @@ const getLibroid = async (id: string) => {
     return;
   }
   try {
-    const docRef = doc(db, "libros", id); // Asegúrate de que `id` no sea undefined
+    const docRef = doc(db, "archivo", id); // Asegúrate de que `id` no sea undefined
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
