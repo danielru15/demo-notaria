@@ -1,3 +1,4 @@
+import { AuthProvider } from '@/context/authContext' 
 import Layout from '@/layout/Layout'
 import React, { FC,  useRef, useState } from 'react'
 import { Box, Button, Divider, FormControl, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material'
@@ -11,11 +12,7 @@ const createArchivo:FC = () => {
  
     const qrCodeRef = useRef<any>(null);
 
-     // Función para generar la URL completa
-    const generateUrl = (id: string) => {
-    const baseUrl = window.location.origin;  // Obtiene el dominio actual
-    return `${baseUrl}/remate/${id}`;
-  };
+   
     //  Informacion Basica libro
     const [libro, setLibro] = useState('');
     const [escInicial, setEscInicial] = useState('');
@@ -44,7 +41,12 @@ const createArchivo:FC = () => {
           }
       };
 
-      
+        // Función para generar la URL completa
+    const generateUrl = (id: string) => {
+        const baseUrl = window.location.origin;  // Obtiene el dominio actual
+        return `${baseUrl}/remate/libro${id}`;
+      };
+
     // Agreagr a la base de datos firebase
     const archivo = collection(db, "archivo")
     const RegistrarLibro = async (e:React.FormEvent<HTMLFormElement>) => {
@@ -104,6 +106,7 @@ const createArchivo:FC = () => {
 
 
   return (
+    <AuthProvider>
     <Layout   title={'Crear registro'}>
         <Box component={"form"} sx={{ m: 1 }} onSubmit={RegistrarLibro} >
             <Grid container spacing={2}>
@@ -324,6 +327,7 @@ const createArchivo:FC = () => {
         </Box>
       
     </Layout>
+    </AuthProvider>
   )
 }
 
