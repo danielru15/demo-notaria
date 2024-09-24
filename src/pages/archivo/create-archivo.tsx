@@ -59,7 +59,7 @@ const createArchivo:FC = () => {
                 tomo: tomo,
                 libro: libro,
                 escInicial: escInicial,
-                escFinal: escInicial,
+                escFinal: escFinal,
                 folios: folios,
                 primer_acto: {
                   acto: acto1,

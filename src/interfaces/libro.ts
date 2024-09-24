@@ -15,7 +15,7 @@ interface Acto {
   mes: string;
   prestado: {
       libro_prestado: boolean;
-      prestado_por: string;
+      prestaso_por: string;
   };
   primer_acto: Acto;
   segundo_acto: Acto;
