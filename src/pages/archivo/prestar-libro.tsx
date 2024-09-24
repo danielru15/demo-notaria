@@ -3,7 +3,7 @@ import Layout from '@/layout/Layout'
 import { DatosContext } from '@/context/datosContext';
 
 
-const index:FC = () => {
+const PrestarLibro:FC = () => {
   const {dataAllLibros} = useContext(DatosContext)
   console.log(dataAllLibros)
   return (
@@ -15,4 +15,4 @@ const index:FC = () => {
   )
 }
 
-export default index
+export default PrestarLibro

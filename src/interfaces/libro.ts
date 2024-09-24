@@ -1,18 +1,23 @@
-// Definir tipos de datos para el formulario
-export interface Acto {
-    acto: string;
-    otorgado_por: string;
-    a_favor_de: string;
-    fecha: string;
-  }
-  
+interface Acto {
+  otorgado_por: string;
+  fecha: string;
+  acto: string;
+  a_favor_de: string;
+}
+
  export interface Libro {
-    mes: string;
-    tomo: string;
-    libro: string;
-    escInicial: string;
-    escFinal: string;
-    folios: string;
-    primer_acto: Acto;
-    segundo_acto: Acto;
-  }
+  año: string;
+  escFinal: string;
+  escInicial: string;
+  folios: string;
+  id: string;
+  libro: string;
+  mes: string;
+  prestado: {
+      libro_prestado: boolean;
+      prestado_por: string;
+  };
+  primer_acto: Acto;
+  segundo_acto: Acto;
+  tomo: string;
+}

@@ -1,6 +1,7 @@
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, onSnapshot, query } from "firebase/firestore";
 import { useEffect, createContext, useState, PropsWithChildren, useRef} from "react";
 import { db } from "../../firebase";
+import { Libro } from "@/interfaces/libro";
 
 
 
@@ -9,7 +10,11 @@ export const DatosContext = createContext<any | null>(null)
 export const DatosProvider = ({ children }:PropsWithChildren) => {
     const drawerWidth:number = 240;
     const [open, setOpen] = useState<Boolean>(true)
+
+    // trae la data de un solo libro por id
     const [dataLibro, setDataLibro] = useState({})
+    // trae todos los libros
+    const [dataAllLibros, setDataAllLibros] = useState<Libro[]>([])
 
   // Función para generar un color aleatorio en formato hexadecimal basado en una cadena
   const getRandomColor= (nombre: string):string  =>{
@@ -44,7 +49,46 @@ const getLibroid = async (id: string) => {
   }
 };
 
+//
+useEffect(() => {
+  const todosLibros = query(collection(db, 'archivo'));
 
+  // Establecer un observador para recibir actualizaciones en tiempo real
+  const unsubscribe = onSnapshot(todosLibros, (querySnapshot) => {
+      // Iterar a través de los cambios en los documentos
+      querySnapshot.docChanges().forEach((change) => {
+          // Crear un objeto newData con el ID y los datos del documento
+          const newData: Libro = { id: change.doc.id, ...change.doc.data() } as Libro;
+
+          // Manejar los diferentes tipos de cambios
+          if (change.type === 'added') {
+              // Verificar si el dato ya existe en el estado antes de agregarlo
+              if (!dataAllLibros.some(item => item.id === newData.id)) {
+                  setDataAllLibros(prevState => [...prevState, newData]);
+              }
+          } else if (change.type === 'modified') {
+              // Actualizar el dato modificado en el estado
+              setDataAllLibros(prevState =>
+                  prevState.map(item =>
+                      item.id === newData.id ? newData : item
+                  )
+              );
+          } else if (change.type === 'removed') {
+              // Eliminar el dato del estado si fue removido
+              setDataAllLibros(prevState =>
+                  prevState.filter(item => item.id !== newData.id)
+              );
+          }
+      });
+  }, (error) => {
+      console.log(error);
+  });
+
+  // Función de limpieza: desuscribirse cuando el componente se desmonte
+  return () => {
+      unsubscribe();
+  };
+}, []);
 
 
 
@@ -57,7 +101,8 @@ const getLibroid = async (id: string) => {
             setOpen,
             getLibroid,
             dataLibro, 
-            setDataLibro
+            setDataLibro,
+            dataAllLibros
         }}>
         {children}
         </DatosContext.Provider>
